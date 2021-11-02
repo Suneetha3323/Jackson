@@ -1,0 +1,13 @@
+properties([pipelineTriggers([githubPush()])])
+node {
+    stage('checkout') {
+    
+
+    git 'https://github.com/Suneetha3323/Jackson.git'
+    }
+    stage('compile,test,package'){
+    def mvnHome=tool 'MAVEN_HOME'
+    env.JAVA_HOME = tool 'jdk8'
+    bat "${mvnHome}/bin/mvn -f C:/Users/Aditya/git/Jackson/RestAssuredJackson/pom.xml clean package";
+    }
+}
